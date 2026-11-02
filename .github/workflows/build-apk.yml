@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build APK with Native Wrapper
+      - name: Create and Build Project
         run: |
           mkdir -p app/src/main/assets app/src/main/java/com/aldosari/app
           cp index.html app/src/main/assets/index.html
@@ -29,11 +29,12 @@ jobs:
           EOF
 
           cat << 'EOF' > build.gradle
-          buildscript {
-              repositories { google(); mavenCentral() }
-              dependencies { classpath 'com.android.tools.build:gradle:8.5' }
+          allprojects {
+              repositories {
+                  google()
+                  mavenCentral()
+              }
           }
-          allprojects { repositories { google(); mavenCentral() } }
           EOF
 
           cat << 'EOF' > app/build.gradle
@@ -48,7 +49,14 @@ jobs:
                   versionCode 1
                   versionName "1.0"
               }
-              buildTypes { release { minifyEnabled false } }
+              buildTypes {
+                  release {
+                      minifyEnabled false
+                  }
+              }
+          }
+          dependencies {
+              implementation 'androidx.appcompat:appcompat:1.6.1'
           }
           EOF
 
@@ -101,7 +109,9 @@ jobs:
           }
           EOF
 
-          gradle assembleDebug
+          # استخدام الإنشاء التلقائي المدمج بدون تعقيد النسخ القديمة
+          gradle wrapper --gradle-version 8.5
+          ./gradlew assembleDebug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
