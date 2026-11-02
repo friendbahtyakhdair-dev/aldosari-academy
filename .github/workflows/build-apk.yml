@@ -1,4 +1,4 @@
-name: Build Al-Dosari Academy APK
+name: Build Real Android APK
 
 on:
   push:
@@ -6,25 +6,105 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-apk:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
-          node-version: '20'
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: Build Web App Package
+      - name: Build APK with Native Wrapper
         run: |
-          mkdir -p output
-          cp index.html output/index.html
-          echo "App files prepared successfully!"
+          mkdir -p app/src/main/assets app/src/main/java/com/aldosari/app
+          cp index.html app/src/main/assets/index.html
 
-      - name: Upload Web Artifact
+          cat << 'EOF' > settings.gradle
+          rootProject.name = "AlDosariApp"
+          include ':app'
+          EOF
+
+          cat << 'EOF' > build.gradle
+          buildscript {
+              repositories { google(); mavenCentral() }
+              dependencies { classpath 'com.android.tools.build:gradle:8.1.2' }
+          }
+          allprojects { repositories { google(); mavenCentral() } }
+          EOF
+
+          cat << 'EOF' > app/build.gradle
+          apply plugin: 'com.android.application'
+          android {
+              namespace 'com.aldosari.app'
+              compileSdk 34
+              defaultConfig {
+                  applicationId "com.aldosari.app"
+                  minSdk 21
+                  targetSdk 34
+                  versionCode 1
+                  versionName "1.0"
+              }
+              buildTypes { release { minifyEnabled false } }
+          }
+          EOF
+
+          cat << 'EOF' > app/src/main/AndroidManifest.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <uses-permission android:name="android.permission.INTERNET" />
+              <uses-permission android:name="android.permission.RECORD_AUDIO" />
+              <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+              <application android:label="أكاديمية الدوسري" android:usesCleartextTraffic="true">
+                  <activity android:name=".MainActivity" android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+
+          cat << 'EOF' > app/src/main/java/com/aldosari/app/MainActivity.java
+          package com.aldosari.app;
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          import android.Manifest;
+          import android.content.pm.PackageManager;
+          import android.os.Build;
+
+          public class MainActivity extends Activity {
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                      if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                          requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 101);
+                      }
+                  }
+                  WebView wv = new WebView(this);
+                  setContentView(wv);
+                  WebSettings s = wv.getSettings();
+                  s.setJavaScriptEnabled(true);
+                  s.setDomStorageEnabled(true);
+                  s.setMediaPlaybackRequiresUserGesture(false);
+                  wv.setWebViewClient(new WebViewClient());
+                  wv.loadUrl("file:///android_asset/index.html");
+              }
+          }
+          EOF
+
+          gradle assembleDebug
+
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AlDosari-Academy-Web-App
-          path: output/index.html
+          name: AlDosari-App-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
