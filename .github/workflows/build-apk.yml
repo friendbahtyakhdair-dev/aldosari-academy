@@ -1,120 +1,48 @@
-name: Build Real Android APK
+name: Build Android APK
 
 on:
-  push:
-    branches: [ main, master ]
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Get source code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
 
-      - name: Create and Build Project
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Android App
         run: |
-          mkdir -p app/src/main/assets app/src/main/java/com/aldosari/app
-          cp index.html app/src/main/assets/index.html
+          cordova create app com.aldosari.academy AldosariAcademy
+          mkdir -p app/www
+          cp index.html app/www/index.html
+          cd app
+          cordova platform add android@13.0.0
 
-          cat << 'EOF' > settings.gradle
-          rootProject.name = "AlDosariApp"
-          include ':app'
-          EOF
+      - name: Build APK
+        run: |
+          cd app
+          cordova build android --debug
 
-          cat << 'EOF' > build.gradle
-          allprojects {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-          }
-          EOF
-
-          cat << 'EOF' > app/build.gradle
-          apply plugin: 'com.android.application'
-          android {
-              namespace 'com.aldosari.app'
-              compileSdk 34
-              defaultConfig {
-                  applicationId "com.aldosari.app"
-                  minSdk 21
-                  targetSdk 34
-                  versionCode 1
-                  versionName "1.0"
-              }
-              buildTypes {
-                  release {
-                      minifyEnabled false
-                  }
-              }
-          }
-          dependencies {
-              implementation 'androidx.appcompat:appcompat:1.6.1'
-          }
-          EOF
-
-          cat << 'EOF' > app/src/main/AndroidManifest.xml
-          <?xml version="1.0" encoding="utf-8"?>
-          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-              <uses-permission android:name="android.permission.INTERNET" />
-              <uses-permission android:name="android.permission.RECORD_AUDIO" />
-              <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-              <application android:label="أكاديمية الدوسري" android:usesCleartextTraffic="true">
-                  <activity android:name=".MainActivity" android:exported="true">
-                      <intent-filter>
-                          <action android:name="android.intent.action.MAIN" />
-                          <category android:name="android.intent.category.LAUNCHER" />
-                      </intent-filter>
-                  </activity>
-              </application>
-          </manifest>
-          EOF
-
-          cat << 'EOF' > app/src/main/java/com/aldosari/app/MainActivity.java
-          package com.aldosari.app;
-          import android.app.Activity;
-          import android.os.Bundle;
-          import android.webkit.WebSettings;
-          import android.webkit.WebView;
-          import android.webkit.WebViewClient;
-          import android.Manifest;
-          import android.content.pm.PackageManager;
-          import android.os.Build;
-
-          public class MainActivity extends Activity {
-              @Override
-              protected void onCreate(Bundle savedInstanceState) {
-                  super.onCreate(savedInstanceState);
-                  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                      if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                          requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 101);
-                      }
-                  }
-                  WebView wv = new WebView(this);
-                  setContentView(wv);
-                  WebSettings s = wv.getSettings();
-                  s.setJavaScriptEnabled(true);
-                  s.setDomStorageEnabled(true);
-                  s.setMediaPlaybackRequiresUserGesture(false);
-                  wv.setWebViewClient(new WebViewClient());
-                  wv.loadUrl("file:///android_asset/index.html");
-              }
-          }
-          EOF
-
-          # استخدام الإنشاء التلقائي المدمج بدون تعقيد النسخ القديمة
-          gradle wrapper --gradle-version 8.5
-          ./gradlew assembleDebug
-
-      - name: Upload APK Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: AlDosari-App-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: Aldosari-Academy-APK
+          path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
