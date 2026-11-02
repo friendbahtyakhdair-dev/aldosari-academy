@@ -31,7 +31,6 @@ jobs:
           
           export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
           
-          # قبول التراخيص أوتوماتيكياً
           mkdir -p $ANDROID_HOME/licenses
           echo "24333f8a63b6825ea3c55b4f00526f8b56a36c9e" > $ANDROID_HOME/licenses/android-sdk-license
           echo "84831b9409646a918e30573bab4c9c91346d8abd" >> $ANDROID_HOME/licenses/android-sdk-license
@@ -45,7 +44,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: '8.4'
+          gradle-version: '8.5'
 
       - name: Generate Android Native Project Structure
         run: |
@@ -65,7 +64,7 @@ jobs:
                   mavenCentral()
               }
               dependencies {
-                  classpath 'com.android.tools.build:gradle:8.1.2'
+                  classpath 'com.android.tools.build:gradle:8.2.0'
               }
           }
           allprojects {
@@ -80,11 +79,11 @@ jobs:
           apply plugin: 'com.android.application'
           android {
               namespace 'com.aldosari.academy'
-              compileSdkVersion 34
+              compileSdk 34
               defaultConfig {
                   applicationId "com.aldosari.academy"
-                  minSdkVersion 23
-                  targetSdkVersion 34
+                  minSdk 23
+                  targetSdk 34
                   versionCode 1
                   versionName "1.0"
               }
