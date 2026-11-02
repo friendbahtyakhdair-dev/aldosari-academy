@@ -1,392 +1,174 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>أكاديمية محاكاة الشيخ ياسر الدوسري - الإصدار الخارق</title>
+<meta name="theme-color" content="#070a14">
+<title>أكاديمية محاكاة الشيخ ياسر الدوسري</title>
 <style>
-  :root {
-    --bg: #070a14;
-    --card: #111a2e;
-    --accent: #d97706;
-    --accent-light: #fbbf24;
-    --blue: #38bdf8;
-    --green: #22c55e;
-    --red: #ef4444;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-  }
-  * { box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-  body { margin: 0; padding: 0; background: var(--bg); color: var(--text); padding-bottom: 60px; }
-  header {
-    background: linear-gradient(135deg, #111a2e 0%, #070a14 100%);
-    padding: 16px 12px; text-align: center; border-bottom: 2px solid var(--accent);
-  }
-  header h1 { margin: 0; font-size: 1.15rem; color: var(--accent-light); }
-  header p { margin: 4px 0 0; font-size: 0.78rem; color: var(--muted); }
-  .tabs {
-    display: flex; overflow-x: auto; background: #0b1120; border-bottom: 1px solid #1e293b;
-    position: sticky; top: 0; z-index: 10; scrollbar-width: none;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    flex: 0 0 auto; padding: 10px 10px; background: none; border: none;
-    color: var(--muted); font-size: 0.75rem; font-weight: bold; cursor: pointer;
-    border-bottom: 3px solid transparent; transition: 0.2s; white-space: nowrap;
-  }
-  .tab-btn.active { color: var(--accent-light); border-bottom-color: var(--accent-light); background: rgba(251,191,36,0.06); }
-  .container { padding: 12px; max-width: 700px; margin: 0 auto; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-  .card {
-    background: var(--card); border-radius: 12px; padding: 14px; margin-bottom: 14px;
-    border: 1px solid #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-  }
-  .card h3 { margin: 0 0 10px; font-size: 0.95rem; color: var(--accent-light); }
-  label { display: block; font-size: 0.82rem; margin-bottom: 5px; color: #cbd5e1; font-weight: 600; }
-  select, input[type="range"], input[type="file"], input[type="number"], input[type="text"] {
-    width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155;
-    background: #070a14; color: var(--text); margin-bottom: 10px; font-size: 0.88rem;
-  }
-  .btn {
-    width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: bold;
-    font-size: 0.88rem; cursor: pointer; margin-bottom: 8px; transition: 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-  }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-secondary { background: #0284c7; color: #fff; }
-  .btn-record { background: var(--red); color: #fff; }
-  .btn-record.recording { background: var(--green); animation: pulse 1.2s infinite; }
-  @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-  canvas {
-    width: 100%; height: 180px; background: #03050a; border-radius: 8px;
-    border: 1px solid #1e293b; margin-bottom: 10px; display: block;
-  }
-  .report-box {
-    background: #03050a; border-right: 4px solid var(--accent-light); padding: 10px;
-    border-radius: 6px; font-size: 0.82rem; line-height: 1.6; white-space: pre-line;
-  }
-  .row { display: flex; gap: 8px; }
-  .row > * { flex: 1; }
-  audio { width: 100%; margin: 4px 0 8px; height: 36px; }
-  .badge {
-    display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem;
-    background: rgba(56, 189, 248, 0.15); color: var(--blue); margin-bottom: 6px;
-  }
-  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
-  .stat-card { background: #0b1120; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #1e293b; }
-  .stat-card h4 { margin: 0 0 4px; font-size: 0.75rem; color: var(--muted); }
-  .stat-card p { margin: 0; font-size: 1.1rem; font-weight: bold; color: var(--accent-light); }
-  .challenge-banner {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1px dashed var(--accent-light); padding: 12px; border-radius: 8px; margin-bottom: 12px;
-  }
+:root{--bg:#070a14;--card:#111a2e;--accent:#d97706;--gold:#fbbf24;--blue:#38bdf8;--green:#22c55e;--red:#ef4444;--text:#f8fafc;--muted:#94a3b8}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);padding-bottom:35px}
+header{background:linear-gradient(135deg,#111a2e,#070a14);padding:18px 12px;text-align:center;border-bottom:2px solid var(--accent)}
+header h1{margin:0;font-size:1.2rem;color:var(--gold)}header p{margin:5px 0 0;font-size:.8rem;color:var(--muted)}
+.tabs{display:flex;overflow-x:auto;background:#0b1120;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:5;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}.tab-btn{flex:0 0 auto;padding:12px 10px;background:none;border:0;color:var(--muted);font-size:.78rem;font-weight:bold;border-bottom:3px solid transparent;white-space:nowrap}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:#fbbf240f}
+.container{padding:12px;max-width:720px;margin:auto}.tab-content{display:none}.tab-content.active{display:block}
+.card{background:var(--card);border-radius:12px;padding:14px;margin-bottom:14px;border:1px solid #1e293b;box-shadow:0 4px 12px #0005}
+.card h3{margin:0 0 12px;font-size:.98rem;color:var(--gold)}
+label{display:block;font-size:.84rem;margin:8px 0 5px;color:#cbd5e1;font-weight:600}
+select,input[type=range],input[type=file],input[type=number]{width:100%;padding:10px;border-radius:8px;border:1px solid #334155;background:#070a14;color:var(--text);margin-bottom:10px;font-size:.88rem}
+.btn{width:100%;padding:12px;border:0;border-radius:8px;font-weight:bold;font-size:.88rem;margin:5px 0;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-primary{background:var(--accent);color:white}.btn-secondary{background:#0284c7;color:white}.btn-record{background:var(--red);color:white}.btn-record.recording{background:var(--green)}
+canvas{width:100%;height:180px;background:#03050a;border-radius:8px;border:1px solid #1e293b;margin:8px 0;display:block}
+.report-box{background:#03050a;border-right:4px solid var(--gold);padding:11px;border-radius:6px;font-size:.84rem;line-height:1.7;white-space:pre-line}
+.row{display:flex;gap:8px}.row>*{flex:1}audio{width:100%;margin:5px 0 10px}
+.badge{display:inline-block;padding:3px 8px;border-radius:6px;font-size:.72rem;background:#38bdf826;color:var(--blue);margin-bottom:6px}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
+.stat-card{background:#0b1120;padding:10px;border-radius:8px;text-align:center;border:1px solid #1e293b}
+.stat-card h4{margin:0 0 4px;font-size:.75rem;color:var(--muted)}.stat-card p{margin:0;font-size:1.1rem;font-weight:bold;color:var(--gold)}
+.challenge-banner{background:linear-gradient(135deg,#1e293b,#0f172a);border:1px dashed var(--gold);padding:12px;border-radius:8px;margin-bottom:12px}
+.small-note{color:var(--muted);font-size:.78rem;line-height:1.6}
 </style>
 </head>
 <body>
-
-<header>
-  <h1>🕌 أكاديمية محاكاة الشيخ ياسر الدوسري</h1>
-  <p>النسخة الخارقة: عُرَب، ختمة، تحديات يومية، وتمارين زيادة النفَس</p>
-</header>
-
-<div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('tab1', this)">1. معسكر العُرَب</button>
-  <button class="tab-btn" onclick="switchTab('tab2', this)">2. تحدي اليوم</button>
-  <button class="tab-btn" onclick="switchTab('tab3', this)">3. زيادة النفَس</button>
-  <button class="tab-btn" onclick="switchTab('tab4', this)">4. جدول الختمة</button>
-  <button class="tab-btn" onclick="switchTab('tab5', this)">5. مبطئ العُرَب</button>
-  <button class="tab-btn" onclick="switchTab('tab6', this)">6. المختبر</button>
-  <button class="tab-btn" onclick="switchTab('tab7', this)">7. سجلي</button>
+<header><h1>🕌 أكاديمية محاكاة الشيخ ياسر الدوسري</h1><p>تدريبات صوتية، تحديات يومية، تمارين النفَس وسجل الإنجاز</p></header>
+<nav class="tabs">
+<button class="tab-btn active" data-tab="tab1">1. معسكر العُرَب</button>
+<button class="tab-btn" data-tab="tab2">2. تحدي اليوم</button>
+<button class="tab-btn" data-tab="tab3">3. زيادة النفَس</button>
+<button class="tab-btn" data-tab="tab4">4. جدول الختمة</button>
+<button class="tab-btn" data-tab="tab5">5. مبطئ العُرَب</button>
+<button class="tab-btn" data-tab="tab6">6. المختبر</button>
+<button class="tab-btn" data-tab="tab7">7. سجلي</button>
+</nav>
+<main class="container">
+<section id="tab1" class="tab-content active">
+<div class="card">
+<h3>🎯 التدريب الأساسي وتوليد النغمات</h3>
+<label>اختر التمرين المرحلي:</label>
+<select id="exSelect">
+<option value="delayed_vibrato">المستوى 1: المد الدوسري (ثبات ثم اهتزاز 6Hz)</option>
+<option value="rapid_turn">المستوى 2: العُربة الثلاثية الخاطفة</option>
+<option value="bayat_qafalah">المستوى 3: القفلة المزدوجة على البيات</option>
+<option value="bayat_to_saba">المستوى 4: تحوّل من البيات إلى الصبا</option>
+<option value="hijaz_qunoot">المستوى 5: جواب الحجاز والقفلة القنوتية</option>
+</select>
+<label>طبقة القرار: <span id="baseHzVal">147</span> هرتز</label>
+<input type="range" id="baseHzSlider" min="110" max="185" value="147">
+<div id="exDesc" class="report-box"></div>
+<button class="btn btn-secondary" id="generateBtn">🎵 توليد وسماع التمرين الصوتي</button>
+<audio id="synthAudioPlayer" controls></audio>
 </div>
-
-<div class="container">
-  <!-- 1. معسكر العُرَب -->
-  <div id="tab1" class="tab-content active">
-    <div class="card">
-      <h3>🎯 التدريب الأساسي وتوليد النغمات</h3>
-      <label>اختر التمرين المرحلي:</label>
-      <select id="exSelect" onchange="updateExInfo()">
-        <option value="delayed_vibrato">المستوى 1: المد الدوسري (ثبات ثم اهتزاز 6Hz)</option>
-        <option value="rapid_turn">المستوى 2: العُربة الثلاثية الخاطفة (التفاف الحنجرة)</option>
-        <option value="bayat_qafalah">المستوى 3: القفلة المزدوجة على البيات (مع الربع تون)</option>
-        <option value="bayat_to_saba">المستوى 4: تحوّل الدوسري (من البيات إلى الصبا الحزين)</option>
-        <option value="hijaz_qunoot">المستوى 5: جواب الحجاز والقفلة القنوتية المتموجة</option>
-      </select>
-      <label>طبقة القرار (الارتكاز): <span id="baseHzVal">147</span> هرتز</label>
-      <input type="range" id="baseHzSlider" min="110" max="185" value="147" oninput="document.getElementById('baseHzVal').innerText=this.value">
-      <div id="exDesc" class="report-box" style="margin-bottom:8px;"></div>
-      <button class="btn btn-secondary" onclick="generateAndPlayExercise()">🎵 توليد وسماع التمرين الصوتي</button>
-      <audio id="synthAudioPlayer" controls></audio>
-    </div>
-    <div class="card">
-      <h3>🎙️ طبّق التمرين بصوتك</h3>
-      <button id="recExBtn" class="btn btn-record" onclick="toggleExerciseRecord()">🔴 ابدأ تسجيل محاولتك (4 ثوانٍ)</button>
-      <audio id="usrExAudioPlayer" controls style="display:none;"></audio>
-      <canvas id="exCanvas" width="600" height="180"></canvas>
-      <div id="exFeedback" class="report-box">سجل محاولتك لمقارنة مسار حنجرتك بالمسار المرجعي.</div>
-    </div>
-  </div>
-
-  <!-- 2. تحدي اليوم الدوسري -->
-  <div id="tab2" class="tab-content">
-    <div class="card">
-      <h3>🏆 تحدي اليوم الدوسري (Gamification)</h3>
-      <div class="challenge-banner" id="dailyChallengeBox">
-        <h4 style="margin:0 0 6px; color:var(--accent-light);">🎯 تحدي اليوم: قفلة مقام البيات الخشوعية</h4>
-        <p style="margin:0; font-size:0.85rem; line-height:1.5;">سجل آية قصيرة تختمها بمقام البيات مع تحقيق نسبة تطابق فوق 82% للحصول على وسام اليوم الذهبي!</p>
-      </div>
-      <button class="btn btn-primary" onclick="startDailyChallenge()">بدء اختبار التحدي اليومي 🚀</button>
-      <div id="challengeResult" class="report-box" style="margin-top:10px;">اضغط لبدء اختبار اليوم وتسجيل النتيجة في رصيدك.</div>
-    </div>
-  </div>
-
-  <!-- 3. مختبر زيادة ونفَس الرئتين -->
-  <div id="tab3" class="tab-content">
-    <div class="card">
-      <h3>🫁 مختبر زيادة وطول النفَس (سر القفلات الطويلة)</h3>
-      <span class="badge">تدريب الرئتين والحجاب الحاجز</span>
-      <div class="report-box" style="margin-bottom:10px;">• **تمرين الحجاب الحاجز:** خذ شهيقاً عميقاً من الأنف حتى يمتتلئ بطنك (وليس صدرك) لمدة 4 ثوانٍ.
-• **تمرين الثبات (صوت الميم أو النون):** انطق حرف (مّمّمّ...) بصوت مستقيم وثابت على طبقة القرار لأطول فترة ممكنة بدون اهتزاز أو انقطع.
-• **هدف الدوسري:** الوصول إلى مد نفس متصل وثابت لمدة لا تقل عن **12 إلى 15 ثانية** في الجملة الواحدة.</div>
-      <label>اضغط للبدء واختبار أقصى مدة لنفسك الآن:</label>
-      <button id="breathBtn" class="btn btn-secondary" onclick="startBreathTest()">⏱️ ابدأ عداد ثبات النفَس (انطق: آآآ أو ممم)</button>
-      <div id="breathResult" class="report-box" style="margin-top:10px;">المدة المسجلة: 0 ثانية. (الهدف: 15 ثانية).</div>
-    </div>
-  </div>
-
-  <!-- 4. جدول الختمة -->
-  <div id="tab2_khatma" class="tab-content"> <!-- Will be linked via tab4 --></div>
-  <div id="tab4" class="tab-content">
-    <div class="card">
-      <h3>📖 برنامج ختمة التدريب الدوسري</h3>
-      <select id="khatmaSelect" onchange="updateKhatmaDetails()">
-        <option value="fatiha">سورة الفاتحة (مقام البيات والقفلات الاستفتاحية)</option>
-        <option value="baqarah_1">البقرة: أول السورة (مقام الراست والفخامة)</option>
-        <option value="yusuf_saba">سورة يوسف: آيات القصص والصبا الشجي</option>
-        <option value="kahf_hijaz">سورة الكهف: آيات التضرع والحجاز</option>
-        <option value="rahman_kurd">سورة الرحمن: آيات النعيم والكرد الانسيابي</option>
-        <option value="qunoot_witr">دعاء القنوت والوتر (القفلات المتموجة)</option>
-      </select>
-      <div id="khatmaDesc" class="report-box" style="margin-bottom:10px;"></div>
-      <button class="btn btn-primary" onclick="markKhatmaDone()">✅ تسجيل إنجاز هذا التدريب</button>
-    </div>
-  </div>
-
-  <!-- 5. مبطئ العُرَب -->
-  <div id="tab5" class="tab-content">
-    <div class="card">
-      <h3>🐢 مبطئ العُرَب الذكي (مع تكرار A-B)</h3>
-      <label>ارفع مقطعاً للشيخ ياسر الدوسري:</label>
-      <input type="file" id="slowFileInput" accept="audio/*" onchange="loadSlowAudio(this)">
-      <audio id="slowAudioPlayer" controls></audio>
-      <label>سرعة التلاوة: <span id="speedVal">60%</span></label>
-      <input type="range" id="speedSlider" min="0.4" max="1.0" step="0.05" value="0.6" oninput="updatePlaybackSpeed(this.value)">
-      <div class="row">
-        <div><label>بداية العُربة (A):</label><input type="number" id="loopStart" value="0" step="0.5" min="0"></div>
-        <div><label>نهاية العُربة (B):</label><input type="number" id="loopEnd" value="0" step="0.5" min="0"></div>
-      </div>
-      <button class="btn btn-primary" onclick="toggleABLoop()" id="loopBtn">🔁 تفعيل التكرار المستمر للعُربة</button>
-    </div>
-  </div>
-
-  <!-- 6. المختبر المجهري -->
-  <div id="tab6" class="tab-content">
-    <div class="card">
-      <h3>🔬 المختبر المجهري الشامل للآيات</h3>
-      <label>1. مقطع الشيخ ياسر الدوسري:</label>
-      <input type="file" id="refStudioFile" accept="audio/*" onchange="loadStudioRef(this)">
-      <audio id="refStudioPlayer" controls style="display:none;"></audio>
-      <label>2. تلاوتك لنفس الآية:</label>
-      <button id="recStudioBtn" class="btn btn-record" onclick="toggleStudioRecord()">🔴 بدء تسجيل تلاوتك</button>
-      <input type="file" id="usrStudioFile" accept="audio/*" onchange="loadStudioUsr(this)">
-      <audio id="usrStudioPlayer" controls style="display:none;"></audio>
-      <button class="btn btn-primary" onclick="runFullStudioAnalysis()">🔍 تحليل مجهري شامل (المقام + العُرَب + القفلة)</button>
-    </div>
-    <div class="card">
-      <h3>1. مسار المقام والأرباع</h3>
-      <canvas id="studioCanvas1" width="600" height="160"></canvas>
-      <h3>2. مجهر العُرَب والتموجات</h3>
-      <canvas id="studioCanvas2" width="600" height="140"></canvas>
-      <h3>3. مجهر القفلة</h3>
-      <canvas id="studioCanvas3" width="600" height="140"></canvas>
-      <div id="studioReport" class="report-box">ارفع المقطعين للتحليل.</div>
-    </div>
-  </div>
-
-  <!-- 7. سجلي -->
-  <div id="tab7" class="tab-content">
-    <div class="card">
-      <h3>🏆 سجلك اليومي وأوسمة الإتقان</h3>
-      <div class="stats-grid">
-        <div class="stat-card"><h4>التدريبات المنجزة</h4><p id="statDoneCount">0</p></div>
-        <div class="stat-card"><h4>أفضل نسبة مطابقة</h4><p id="statBestScore">0%</p></div>
-        <div class="stat-card"><h4>أقصى نفس (ثانية)</h4><p id="statMaxBreath">0 ثانية</p></div>
-      </div>
-      <button class="btn btn-secondary" onclick="resetStats()">🔄 إعادة ضبط السجل</button>
-    </div>
-  </div>
+<div class="card">
+<h3>🎙️ طبّق التمرين بصوتك</h3>
+<button id="recExBtn" class="btn btn-record">🔴 ابدأ تسجيل محاولتك</button>
+<audio id="usrExAudioPlayer" controls style="display:none"></audio>
+<canvas id="exCanvas" width="600" height="180"></canvas>
+<div id="exFeedback" class="report-box">ولّد التمرين أولاً، ثم سجّل محاولتك للمقارنة.</div>
 </div>
-
+</section>
+<section id="tab2" class="tab-content">
+<div class="card"><h3>🏆 تحدي اليوم</h3>
+<div class="challenge-banner"><b style="color:var(--gold)">🎯 تحدي اليوم: قفلة مقام البيات</b><p>سجّل آية قصيرة في قسم معسكر العُرَب، ثم راجع نتيجة تطابق المسار الصوتي.</p></div>
+<button class="btn btn-primary" id="dailyBtn">بدء اختبار التحدي اليومي 🚀</button>
+<div id="challengeResult" class="report-box">ابدأ التحدي ثم نفّذ التدريب الصوتي.</div>
+</div></section>
+<section id="tab3" class="tab-content">
+<div class="card"><h3>🫁 مختبر طول النفَس</h3><span class="badge">تدريب لطيف دون إجهاد</span>
+<div class="report-box">خذ شهيقاً مريحاً، ثم أخرج صوتاً ثابتاً مثل «ممم» دون ضغط. توقف فور الشعور بالدوار أو الانزعاج. لا تحاول حبس النفس أو إجهاد الحنجرة.</div>
+<button id="breathBtn" class="btn btn-secondary">🎙️ ابدأ تسجيل ثبات النفَس</button>
+<div id="breathResult" class="report-box">المدة المسجلة: 0 ثانية.</div>
+</div></section>
+<section id="tab4" class="tab-content">
+<div class="card"><h3>📖 برنامج ختمة التدريب</h3>
+<select id="khatmaSelect">
+<option value="fatiha">سورة الفاتحة</option><option value="baqarah_1">البقرة: أول السورة</option><option value="yusuf_saba">سورة يوسف</option><option value="kahf_hijaz">سورة الكهف</option><option value="rahman_kurd">سورة الرحمن</option><option value="qunoot_witr">دعاء القنوت والوتر</option>
+</select>
+<div id="khatmaDesc" class="report-box"></div>
+<button id="khatmaBtn" class="btn btn-primary">✅ تسجيل إنجاز هذا التدريب</button>
+</div></section>
+<section id="tab5" class="tab-content">
+<div class="card"><h3>🐢 مبطئ العُرَب الذكي (تكرار A-B)</h3>
+<label>ارفع مقطعاً صوتياً:</label><input type="file" id="slowFileInput" accept="audio/*">
+<audio id="slowAudioPlayer" controls></audio>
+<label>سرعة التلاوة: <span id="speedVal">60%</span></label><input type="range" id="speedSlider" min=".4" max="1" step=".05" value=".6">
+<div class="row"><div><label>بداية المقطع A (ثانية)</label><input type="number" id="loopStart" value="0" min="0" step=".5"></div><div><label>نهاية المقطع B (ثانية)</label><input type="number" id="loopEnd" value="0" min="0" step=".5"></div></div>
+<button id="loopBtn" class="btn btn-primary">🔁 تفعيل التكرار المستمر</button>
+</div></section>
+<section id="tab6" class="tab-content">
+<div class="card"><h3>🔬 المختبر المجهري للآيات</h3>
+<label>1. المقطع المرجعي:</label><input type="file" id="refStudioFile" accept="audio/*"><audio id="refStudioPlayer" controls style="display:none"></audio>
+<label>2. تلاوتك:</label><button id="recStudioBtn" class="btn btn-record">🔴 بدء تسجيل تلاوتك</button>
+<input type="file" id="usrStudioFile" accept="audio/*"><audio id="usrStudioPlayer" controls style="display:none"></audio>
+<button id="analyzeBtn" class="btn btn-primary">🔍 تحليل المقطعين</button>
+<p class="small-note">التحليل تقريبي لمسار طبقة الصوت، وليس حكماً علمياً على المقام أو جودة التلاوة.</p>
+</div>
+<div class="card"><h3>1. مسار الطبقة</h3><canvas id="studioCanvas1" width="600" height="150"></canvas><h3>2. التموجات الصوتية</h3><canvas id="studioCanvas2" width="600" height="130"></canvas><h3>3. القفلة</h3><canvas id="studioCanvas3" width="600" height="130"></canvas><div id="studioReport" class="report-box">ارفع المقطعين ثم ابدأ التحليل.</div></div>
+</section>
+<section id="tab7" class="tab-content"><div class="card"><h3>🏆 سجلك اليومي</h3>
+<div class="stats-grid"><div class="stat-card"><h4>التدريبات المنجزة</h4><p id="statDoneCount">0</p></div><div class="stat-card"><h4>أفضل نسبة مطابقة</h4><p id="statBestScore">0%</p></div><div class="stat-card"><h4>أقصى مدة صوت</h4><p id="statMaxBreath">0 ثانية</p></div></div>
+<button id="resetBtn" class="btn btn-secondary">🔄 إعادة ضبط السجل</button></div></section>
+</main>
 <script>
-const EXERCISES_DATA = {
-  delayed_vibrato: "ابدأ بقول (آآآآ) بصوت مستقيم تماماً أول ثانية، ثم حرّك حنجرتك بتموج منتظم (6 هزات/ثانية).",
-  rapid_turn: "سرّ الدوسري: استقر على النغمة، وفي المنتصف اخطف النغمة الأعلى والأدنى بسرعة خاطفة (خلال ثلث ثانية).",
-  bayat_qafalah: "نهاية الآية في مقام البيات: نزول متدرج يمر بدرجة السيكاه (الربع تون 1.5)، وقفة معلقة، ثم انزلاق للقرار.",
-  bayat_to_saba: "النصف الأول بيات مستقر، ثم في النصف الثاني اخفض النغمة نصف درجة مع شجن مقام الصبا.",
-  hijaz_qunoot: "أسلوب القنوت: قفزة لطبقة الجواب مع عُربة حجازية حادة، يليها هبوط متدرج."
+"use strict";
+const EXERCISES={
+delayed_vibrato:"ابدأ بصوت مستقيم، ثم أضف تموجاً لطيفاً ومنتظماً دون ضغط على الحنجرة.",
+rapid_turn:"ثبّت النغمة ثم انتقل سريعاً إلى نغمة أعلى وأخرى أدنى، بهدوء ودون شد.",
+bayat_qafalah:"تدرّب على نزول لحني تدريجي ثم استقرار لطيف على القرار.",
+bayat_to_saba:"ابدأ بمسار مستقر ثم غيّر اتجاه اللحن تدريجياً.",
+hijaz_qunoot:"تدرّب على صعود لحني مريح ثم هبوط متدرج."
 };
-
-const KHATMA_DATA = {
-  fatiha: "• الهدف: ضبط قرار مقام البيات في (الحمد لله رب العالمين).\n• السر الدوسري: تفخيم اللام مع مد منفصل مستقر وقفلة ناعمة.",
-  baqarah_1: "• الهدف: إتقان مقام الراست.\n• السر الدوسري: ملء الفم بالرنين الصدري في (الم ذلِكَ الْكِتَابُ) بثبات صوتي فخم.",
-  yusuf_saba: "• الهدف: الانتقال المفاجئ لمقام الصبا الشجي.\n• السر الدوسري: تضييق مجرى الحلق والتحول لطبقة الجواب عند آيات الابتلاء.",
-  kahf_hijaz: "• الهدف: إتقان مقام الحجاز التضرعي.\n• السر الدوسري: سرعة الـ Vibrato والمدود الطويلة في آيات أصحاب الكهف.",
-  rahman_kurd: "• الهدف: مقام الكرد الانسيابي العذب.\n• السر الدوسري: مرونة الحنجرة وسرعة الأداء بدون ضغط في آيات النعيم.",
-  qunoot_witr: "• الهدف: محاكاة دعاء القنوت الشهير.\n• السر الدوسري: دمج الحجاز والبيات مع نبرة الدعاء الخاشع والقفلات المتموجة."
+const KHATMA={
+fatiha:"الهدف: قراءة الفاتحة بتأنٍ، وضبط مخارج الحروف والمدود.",
+baqarah_1:"الهدف: تحسين الثبات والتنفس أثناء قراءة مطلع السورة.",
+yusuf_saba:"الهدف: قراءة الآيات بتدبر ووضوح دون تكلف في الأداء.",
+kahf_hijaz:"الهدف: المحافظة على وضوح الحروف والوقف والابتداء.",
+rahman_kurd:"الهدف: تنويع الأداء مع المحافظة على أحكام التجويد.",
+qunoot_witr:"الهدف: أداء الدعاء بخشوع ووضوح واعتدال."
 };
-
-let audioCtx = null, targetExData = null, mediaStream = null, scriptProcessor = null;
-let recordedChunks = [], isRecordingEx = false, isRecordingStudio = false;
-let studioRefBuffer = null, studioUsrBuffer = null, abLoopActive = false;
-
-function initAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-}
-
-function switchTab(tabId, btn) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  btn.classList.add('active');
-  if (tabId === 'tab7') loadStats();
-}
-
-function updateExInfo() { document.getElementById('exDesc').innerText = EXERCISES_DATA[document.getElementById('exSelect').value]; }
-updateExInfo();
-function updateKhatmaDetails() { document.getElementById('khatmaDesc').innerText = KHATMA_DATA[document.getElementById('khatmaSelect').value]; }
-updateKhatmaDetails();
-
-function encodeWAV(samples, sampleRate) {
-  const buffer = new ArrayBuffer(44 + samples.length * 2);
-  const view = new DataView(buffer);
-  const writeString = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
-  writeString(0, 'RIFF'); view.setUint32(4, 36 + samples.length * 2, true);
-  writeString(8, 'WAVE'); writeString(12, 'fmt ');
-  view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
-  view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
-  view.setUint16(32, 2, true); view.setUint16(34, 16, true);
-  writeString(36, 'data'); view.setUint32(40, samples.length * 2, true);
-  let offset = 44;
-  for (let i = 0; i < samples.length; i++, offset += 2) {
-    let s = Math.max(-1, Math.min(1, samples[i]));
-    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
-  }
-  return new Blob([view], { type: 'audio/wav' });
-}
-
-function generateAndPlayExercise() {
-  initAudio();
-  const type = document.getElementById('exSelect').value;
-  const baseHz = parseFloat(document.getElementById('baseHzSlider').value);
-  const sr = 16000, duration = 4.0, N = Math.floor(sr * duration);
-  const semi = new Float32Array(N), times = new Float32Array(N);
-
-  for (let i = 0; i < N; i++) {
-    const t = i / sr; times[i] = t;
-    if (type === 'delayed_vibrato') {
-      const mask = Math.max(0, Math.min(1, (t - 1.2) / 1.0));
-      semi[i] = 0.45 * mask * Math.sin(2 * Math.PI * 6.0 * t);
-    } else if (type === 'rapid_turn') {
-      let val = 2.0; const env = Math.exp(-Math.pow((t - 1.8) / 0.12, 2));
-      val += 1.5 * env * Math.sin(2 * Math.PI * 5.5 * (t - 1.8));
-      val -= 2.0 / (1 + Math.exp(-15 * (t - 3.1)));
-      semi[i] = val;
-    } else if (type === 'bayat_qafalah') {
-      let base = t < 1.0 ? 5.0 : (t < 1.8 ? 3.0 : (t < 2.8 ? 1.5 : 0.0));
-      const env = Math.exp(-Math.pow((t - 1.8) / 0.08, 2));
-      semi[i] = base + 0.8 * env * Math.sin(2 * Math.PI * 7.0 * (t - 1.8));
-    } else if (type === 'bayat_to_saba') {
-      let base = t < 0.8 ? 1.5 : (t < 1.6 ? 3.0 : (t < 2.5 ? 5.0 : (t < 3.2 ? 2.5 : 0.0)));
-      semi[i] = base + ((t >= 2.5 && t < 3.2) ? 0.4 * Math.sin(2 * Math.PI * 6.0 * t) : 0);
-    } else if (type === 'hijaz_qunoot') {
-      let base = t < 1.0 ? 4.0 : (t < 2.2 ? 5.0 : (t < 3.0 ? 4.0 : 1.0));
-      semi[i] = base + (t > 0.5 ? 0.4 * Math.sin(2 * Math.PI * 6.2 * t) : 0);
-    }
-  }
-
-  const wave = new Float32Array(N);
-  let phase = 0;
-  for (let i = 0; i < N; i++) {
-    const freq = baseHz * Math.pow(2, semi[i] / 12.0);
-    phase += (2 * Math.PI * freq) / sr;
-    let s = Math.sin(phase) + 0.5 * Math.sin(2 * phase) + 0.25 * Math.sin(3 * phase);
-    let env = (i < 800) ? i / 800 : ((i > N - 800) ? (N - i) / 800 : 1.0);
-    wave[i] = (s / 1.75) * env * 0.8;
-  }
-
-  const step = 128, curveSemi = [], curveTime = [];
-  for (let i = 0; i < N; i += step) { curveSemi.push(semi[i]); curveTime.push(times[i]); }
-  targetExData = { semi: curveSemi, time: curveTime, baseHz };
-
-  const player = document.getElementById('synthAudioPlayer');
-  player.src = URL.createObjectURL(encodeWAV(wave, sr));
-  player.play();
-  drawCurves('exCanvas', curveSemi, null, "المسار المرجعي");
-}
-
-function analyzeAudioSamples(samples, sr) {
-  const ratio = sr / 16000, len = Math.floor(samples.length / ratio);
-  const y = new Float32Array(len);
-  for (let i = 0; i < len; i++) y[i] = samples[Math.floor(i * ratio)];
-  const targetSr = 16000, frameLen = 1024, hop = 128;
-  const numFrames = Math.floor((y.length - frameLen) / hop);
-  if (numFrames < 15) return null;
-
-  const f0 = new Float32Array(numFrames), rms = new Float32Array(numFrames);
-  let maxRms = 0, minLag = Math.floor(targetSr / 460), maxLag = Math.floor(targetSr / 75);
-
-  for (let f = 0; f < numFrames; f++) {
-    const start = f * hop; let sumSq = 0;
-    for (let i = 0; i < frameLen; i++) sumSq += y[start + i] * y[start + i];
-    rms[f] = Math.sqrt(sumSq / frameLen); if (rms[f] > maxRms) maxRms = rms[f];
-    let bestLag = 0, minDiff = Infinity;
-    for (let lag = minLag; lag <= maxLag; lag++) {
-      let diff = 0;
-      for (let i = 0; i < frameLen - maxLag; i += 2) {
-        const d = y[start + i] - y[start + i + lag]; diff += d * d;
-      }
-      if (diff < minDiff) { minDiff = diff; bestLag = lag; }
-    }
-    f0[f] = bestLag > 0 ? targetSr / bestLag : 0;
-  }
-
-  const voicedF0 = [];
-  for (let f = 0; f < numFrames; f++) {
-    if (rms[f] > maxRms * 0.08 && f0[f] >= 75 && f0[f] <= 450) voicedF0.push(f0[f]);
-    else f0[f] = NaN;
-  }
-  if (voicedF0.length < 15) return null;
-
-  const sortedF0 = [...voicedF0].sort((a, b) => a - b);
-  const baseHz = sortedF0[Math.floor(sortedF0.length * 0.20)];
-  const validSemi = [], semiClean = [];
-  for (let f = 0; f < numFrames; f++) {
-    if (!isNaN(f0[f])) {
-      const s = 12 * Math.log2(f0[f] / baseHz);
-      semiClean.push(s); validSemi.push(s);
-    } else { semiClean.push(NaN); }
-  }
-
-  const smoothSemi = gaussianSmooth(validSemi, 1.5);
-  const macroTrend = gaussianSmooth(smoothSemi, 10.0);
-  const microOrnaments = smoothSemi.map((v, i) => v - macroTrend[i]);
-  let orabCount = 0, lastPeak = -10;
-  for (let i = 1; i < microOrnaments.length - 1; i++) {
-    const a = Math.abs(microOrnaments[i]);
-    if (a > 0.22 && a > Math.abs(microOrnaments[i - 1]) && a > Math.abs(microOrnaments[i + 1]) && (i - lastPeak) >= 6) {
-      orabCount++; lastPeak = i;
-    }
-  }
-  const durVoiced = Math.max(
+let audioCtx=null, targetExData=null, stream=null, processor=null, sourceNode=null, chunks=[];
+let exRecording=false, studioRecording=false, breathRecording=false, refData=null, usrData=null, loopActive=false;
+let activeStop=null;
+function audioInit(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error("المتصفح لا يدعم الصوت");if(!audioCtx)audioCtx=new AC();if(audioCtx.state==="suspended")audioCtx.resume();return audioCtx}
+function setText(id,t){document.getElementById(id).textContent=t}
+document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".tab-content").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");if(b.dataset.tab==="tab7")loadStats()}));
+function updateEx(){setText("exDesc",EXERCISES[document.getElementById("exSelect").value])}
+function updateKhatma(){setText("khatmaDesc",KHATMA[document.getElementById("khatmaSelect").value])}
+document.getElementById("exSelect").addEventListener("change",updateEx);
+document.getElementById("khatmaSelect").addEventListener("change",updateKhatma);
+document.getElementById("baseHzSlider").addEventListener("input",e=>setText("baseHzVal",e.target.value));
+updateEx();updateKhatma();
+function wavBlob(samples,sr){const ab=new ArrayBuffer(44+samples.length*2),v=new DataView(ab),w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};w(0,"RIFF");v.setUint32(4,36+samples.length*2,true);w(8,"WAVE");w(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,samples.length*2,true);let o=44;for(let s of samples){s=Math.max(-1,Math.min(1,s));v.setInt16(o,s<0?s*32768:s*32767,true);o+=2}return new Blob([ab],{type:"audio/wav"})}
+function generateExercise(){try{const sr=16000,dur=4,N=sr*dur,base=+document.getElementById("baseHzSlider").value,type=document.getElementById("exSelect").value,semi=new Float32Array(N),wave=new Float32Array(N);for(let i=0;i<N;i++){let t=i/sr,x=0;if(type==="delayed_vibrato")x=.45*Math.max(0,Math.min(1,(t-1.2))) * Math.sin(2*Math.PI*6*t);else if(type==="rapid_turn")x=2+1.5*Math.exp(-((t-1.8)/.12)**2)*Math.sin(2*Math.PI*5.5*(t-1.8))-2/(1+Math.exp(-15*(t-3.1)));else if(type==="bayat_qafalah")x=t<1?5:t<1.8?3:t<2.8?1.5:0;else if(type==="bayat_to_saba")x=t<.8?1.5:t<1.6?3:t<2.5?5:t<3.2?2.5:0;else x=t<1?4:t<2.2?5:t<3?4:1;semi[i]=x;let f=base*Math.pow(2,x/12);let phase=2*Math.PI*f*t;let env=Math.min(1,t/.05,(dur-t)/.05);wave[i]=(.65*Math.sin(phase)+.25*Math.sin(2*phase)+.1*Math.sin(3*phase))*Math.max(0,env)*.7}targetExData={semi:Array.from({length:100},(_,i)=>semi[Math.floor(i*N/100)])};let p=document.getElementById("synthAudioPlayer");p.src=URL.createObjectURL(wavBlob(wave,sr));p.play().catch(()=>{});draw("exCanvas",targetExData.semi,null,"المسار المرجعي")}catch(e){alert("تعذر توليد الصوت: "+e.message)}}
+document.getElementById("generateBtn").addEventListener("click",generateExercise);
+async function startCapture(onStop){audioInit();if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw Error("الميكروفون غير متاح في هذه البيئة. افتح التطبيق بعد منح صلاحية الميكروفون.");stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});chunks=[];sourceNode=audioCtx.createMediaStreamSource(stream);processor=audioCtx.createScriptProcessor(4096,1,1);processor.onaudioprocess=e=>chunks.push(new Float32Array(e.inputBuffer.getChannelData(0)));sourceNode.connect(processor);processor.connect(audioCtx.destination);let stopped=false;activeStop=()=>{if(stopped)return;stopped=true;try{processor.disconnect();sourceNode.disconnect()}catch(e){}stream.getTracks().forEach(t=>t.stop());let len=chunks.reduce((a,c)=>a+c.length,0),merged=new Float32Array(len),off=0;chunks.forEach(c=>{merged.set(c,off);off+=c.length});activeStop=null;onStop(merged,audioCtx.sampleRate)}}
+function stopCapture(){if(activeStop)activeStop()}
+function analyze(samples,sr){const frame=1024,hop=256,minLag=Math.floor(sr/450),maxLag=Math.floor(sr/75),vals=[],rmsVals=[];for(let start=0;start+frame+maxLag<samples.length;start+=hop){let sum=0;for(let i=0;i<frame;i++)sum+=samples[start+i]**2;let rms=Math.sqrt(sum/frame);rmsVals.push(rms);let best=0,bestCorr=-Infinity;for(let lag=minLag;lag<=maxLag;lag++){let corr=0;for(let i=0;i<frame-maxLag;i+=3)corr+=samples[start+i]*samples[start+i+lag];if(corr>bestCorr){bestCorr=corr;best=lag}}vals.push(rms>.008&&best?sr/best:NaN)}let voiced=vals.filter(x=>Number.isFinite(x)&&x>=70&&x<=500);if(voiced.length<8)return null;let sorted=[...voiced].sort((a,b)=>a-b),base=sorted[Math.floor(sorted.length*.2)];let semi=vals.map(x=>Number.isFinite(x)?12*Math.log2(x/base):NaN);let clean=semi.filter(Number.isFinite);return{base,semi,clean}}
+function score(a,b){let x=a.filter(Number.isFinite),y=b.filter(Number.isFinite);if(!x.length||!y.length)return 0;let n=80,err=0;for(let i=0;i<n;i++){let p=x[Math.floor(i*x.length/n)],q=y[Math.floor(i*y.length/n)];err+=Math.abs(p-q)}return Math.max(0,Math.min(100,100*Math.exp(-.22*err/n)))}
+function draw(id,a,b,title){let c=document.getElementById(id),ctx=c.getContext("2d"),W=c.width,H=c.height;ctx.clearRect(0,0,W,H);let all=[...(a||[]),...(b||[])].filter(Number.isFinite),lo=all.length?Math.min(...all)-1:-2,hi=all.length?Math.max(...all)+1:7;if(hi===lo)hi=lo+1;let y=v=>H-15-(v-lo)/(hi-lo)*(H-30);ctx.strokeStyle="#334155";ctx.lineWidth=1;for(let k=0;k<5;k++){let yy=15+k*(H-30)/4;ctx.beginPath();ctx.moveTo(0,yy);ctx.lineTo(W,yy);ctx.stroke()}function line(arr,color){if(!arr||!arr.length)return;ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.beginPath();let pen=false;arr.forEach((v,i)=>{if(!Number.isFinite(v)){pen=false;return}let xx=8+i*(W-16)/Math.max(1,arr.length-1),yy=y(v);if(!pen){ctx.moveTo(xx,yy);pen=true}else ctx.lineTo(xx,yy)});ctx.stroke()}line(a,"#38bdf8");line(b,"#fbbf24");ctx.fillStyle="#f8fafc";ctx.font="bold 14px sans-serif";ctx.fillText(title,12,18)}
+async function recordExercise(){let btn=document.getElementById("recExBtn");if(!exRecording){if(!targetExData)generateExercise();try{await startCapture((s,sr)=>{let p=document.getElementById("usrExAudioPlayer");p.src=URL.createObjectURL(wavBlob(s,sr));p.style.display="block";let r=analyze(s,sr);if(!r){setText("exFeedback","لم يتم التقاط صوت واضح. جرّب التسجيل في مكان هادئ.");return}let sc=score(targetExData.semi,r.semi);draw("exCanvas",targetExData.semi,r.semi,"نسبة التقارب التقريبية: "+sc.toFixed(1)+"%");setText("exFeedback","🎯 نسبة التقارب التقريبية: "+sc.toFixed(1)+"%\nهذا تقدير لمسار الطبقة وليس حكماً على التجويد.");saveStats(sc)});exRecording=true;btn.classList.add("recording");btn.textContent="⏹️ إيقاف التسجيل وعرض النتيجة"}catch(e){alert("تعذر تشغيل الميكروفون: "+e.message)}}else{exRecording=false;btn.classList.remove("recording");btn.textContent="🔴 ابدأ تسجيل محاولتك";stopCapture()}}
+document.getElementById("recExBtn").addEventListener("click",recordExercise);
+document.getElementById("dailyBtn").addEventListener("click",()=>{setText("challengeResult","ابدأ بتسجيل محاولتك في تبويب معسكر العُرَب. ستظهر نسبة التقارب هناك.");document.querySelector('[data-tab="tab1"]').click()});
+async function breathToggle(){let b=document.getElementById("breathBtn");if(!breathRecording){try{await startCapture((s,sr)=>{let d=s.length/sr;setText("breathResult","مدة التسجيل: "+d.toFixed(1)+" ثانية.");let old=+(localStorage.getItem("aldosari_maxbreath")||0);localStorage.setItem("aldosari_maxbreath",Math.max(old,d).toFixed(1));loadStats()});breathRecording=true;b.classList.add("recording");b.textContent="⏹️ إيقاف التسجيل";}catch(e){alert("تعذر تشغيل الميكروفون: "+e.message)}}else{breathRecording=false;b.classList.remove("recording");b.textContent="🎙️ ابدأ تسجيل ثبات النفَس";stopCapture()}}
+document.getElementById("breathBtn").addEventListener("click",breathToggle);
+document.getElementById("khatmaBtn").addEventListener("click",()=>{saveStats(85);alert("تم تسجيل إنجاز التدريب.");});
+document.getElementById("slowFileInput").addEventListener("change",e=>{let f=e.target.files[0];if(!f)return;let p=document.getElementById("slowAudioPlayer");p.src=URL.createObjectURL(f);p.onloadedmetadata=()=>document.getElementById("loopEnd").value=p.duration.toFixed(1)});
+document.getElementById("speedSlider").addEventListener("input",e=>{let v=+e.target.value;setText("speedVal",Math.round(v*100)+"%");document.getElementById("slowAudioPlayer").playbackRate=v});
+document.getElementById("loopBtn").addEventListener("click",e=>{loopActive=!loopActive;e.target.textContent=loopActive?"✅ التكرار مفعّل — اضغط للإيقاف":"🔁 تفعيل التكرار المستمر";e.target.style.background=loopActive?"#16a34a":""});
+document.getElementById("slowAudioPlayer").addEventListener("timeupdate",e=>{let p=e.target;if(loopActive){let a=+document.getElementById("loopStart").value||0,b=+document.getElementById("loopEnd").value||p.duration;if(b>a&&p.currentTime>=b)p.currentTime=a}});
+async function decodeAudioFile(file){audioInit();let buf=await file.arrayBuffer(),ab=await audioCtx.decodeAudioData(buf);return{samples:ab.getChannelData(0).slice(),sr:ab.sampleRate}}
+document.getElementById("refStudioFile").addEventListener("change",async e=>{try{if(e.target.files[0]){refData=await decodeAudioFile(e.target.files[0]);let p=document.getElementById("refStudioPlayer");p.src=URL.createObjectURL(e.target.files[0]);p.style.display="block"}}catch(err){alert("تعذر قراءة المقطع المرجعي: "+err.message)}});
+document.getElementById("usrStudioFile").addEventListener("change",async e=>{try{if(e.target.files[0]){usrData=await decodeAudioFile(e.target.files[0]);let p=document.getElementById("usrStudioPlayer");p.src=URL.createObjectURL(e.target.files[0]);p.style.display="block"}}catch(err){alert("تعذر قراءة تلاوتك: "+err.message)}});
+async function studioRecord(){let b=document.getElementById("recStudioBtn");if(!studioRecording){try{await startCapture((s,sr)=>{usrData={samples:s,sr};let p=document.getElementById("usrStudioPlayer");p.src=URL.createObjectURL(wavBlob(s,sr));p.style.display="block"});studioRecording=true;b.classList.add("recording");b.textContent="⏹️ إيقاف وحفظ التلاوة"}catch(e){alert("تعذر تشغيل الميكروفون: "+e.message)}}else{studioRecording=false;b.classList.remove("recording");b.textContent="🔴 بدء تسجيل تلاوتك";stopCapture()}}
+document.getElementById("recStudioBtn").addEventListener("click",studioRecord);
+document.getElementById("analyzeBtn").addEventListener("click",()=>{if(!refData||!usrData){alert("أدخل المقطع المرجعي وتلاوتك أولاً.");return}let a=analyze(refData.samples,refData.sr),b=analyze(usrData.samples,usrData.sr);if(!a||!b){alert("تعذر تحليل الصوت. استخدم مقطعين واضحين يحتويان على صوت بشري.");return}let sc=score(a.semi,b.semi),q1=a.semi.slice(Math.floor(a.semi.length*.7)),q2=b.semi.slice(Math.floor(b.semi.length*.7)),qs=score(q1,q2);draw("studioCanvas1",a.semi,b.semi,"تقارب الطبقة");draw("studioCanvas2",a.semi.map((v,i)=>Number.isFinite(v)?v-(a.semi[i-1]||v):NaN),b.semi.map((v,i)=>Number.isFinite(v)?v-(b.semi[i-1]||v):NaN),"تغيرات الطبقة");draw("studioCanvas3",q1,q2,"مقارنة نهاية المقطعين");setText("studioReport","نتيجة تقريبية:\n• تقارب مسار الطبقة: "+sc.toFixed(1)+"%\n• تقارب نهاية المقطعين: "+qs.toFixed(1)+"%\nتنبيه: النتيجة آلية تقريبية ولا تقيس صحة أحكام التجويد.");saveStats(sc)});
+function saveStats(s){let n=+(localStorage.getItem("aldosari_done")||0)+1,best=+(localStorage.getItem("aldosari_best")||0);localStorage.setItem("aldosari_done",n);localStorage.setItem("aldosari_best",Math.max(best,s).toFixed(1))}
+function loadStats(){setText("statDoneCount",localStorage.getItem("aldosari_done")||"0");setText("statBestScore",(localStorage.getItem("aldosari_best")||"0")+"%");setText("statMaxBreath",(localStorage.getItem("aldosari_maxbreath")||"0")+" ثانية")}
+document.getElementById("resetBtn").addEventListener("click",()=>{if(confirm("هل تريد مسح السجل؟")){["aldosari_done","aldosari_best","aldosari_maxbreath"].forEach(k=>localStorage.removeItem(k));loadStats()}});
+loadStats();
+</script>
+</body>
+</html>
